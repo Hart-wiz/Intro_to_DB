@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Books (
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- CUSTOMERS (updated per checker)
+-- CUSTOMERS (checker-required columns)
 CREATE TABLE IF NOT EXISTS Customers (
   customer_id INT AUTO_INCREMENT PRIMARY KEY,
   customer_name VARCHAR(215) NOT NULL,
@@ -48,12 +48,12 @@ CREATE TABLE IF NOT EXISTS Orders (
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- ORDER DETAILS
-CREATE TABLE IF NOT EXISTS ORDER_DETAILS (
+-- ORDER DETAILS (name + quantity type per checker)
+CREATE TABLE IF NOT EXISTS Order_Details (
   order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,
   book_id INT NOT NULL,
-  quantity INT NOT NULL DEFAULT 1,
+  quantity DOUBLE NOT NULL DEFAULT 1,
   unit_price DECIMAL(10,2) NOT NULL,
   CONSTRAINT fk_details_order
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
