@@ -1,11 +1,9 @@
 -- task_2.sql
 
--- 1) Create and select the database
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
--- 2) AUTHORS
--- Includes tokens: Authors, author_id, author_name (as requested)
+-- AUTHORS
 CREATE TABLE IF NOT EXISTS Authors (
   author_id INT AUTO_INCREMENT PRIMARY KEY,
   author_name VARCHAR(255) NOT NULL,
@@ -13,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Authors (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3) BOOKS
+-- BOOKS
 CREATE TABLE IF NOT EXISTS Books (
   book_id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
@@ -28,21 +26,17 @@ CREATE TABLE IF NOT EXISTS Books (
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- 4) CUSTOMERS
+-- CUSTOMERS (updated per checker)
 CREATE TABLE IF NOT EXISTS Customers (
   customer_id INT AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
+  customer_name VARCHAR(215) NOT NULL,
+  email VARCHAR(215) NOT NULL UNIQUE,
+  address TEXT,
   phone VARCHAR(50),
-  address VARCHAR(255),
-  city VARCHAR(100),
-  state VARCHAR(100),
-  postal_code VARCHAR(20),
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- 5) ORDERS
+-- ORDERS
 CREATE TABLE IF NOT EXISTS Orders (
   order_id INT AUTO_INCREMENT PRIMARY KEY,
   customer_id INT NOT NULL,
@@ -54,7 +48,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- 6) ORDER DETAILS
+-- ORDER DETAILS
 CREATE TABLE IF NOT EXISTS ORDER_DETAILS (
   order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,
